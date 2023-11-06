@@ -3,12 +3,12 @@ package pl.javastart.task;
 public class Address {
     String country;
     String city;
-    String Street;
+    String street;
 
     public Address(String country, String city, String street) {
         this.country = country;
         this.city = city;
-        Street = street;
+        this.street = street;
     }
 
     public String getCountry() {
@@ -20,6 +20,6 @@ public class Address {
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 }

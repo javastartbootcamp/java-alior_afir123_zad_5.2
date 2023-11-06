@@ -22,8 +22,8 @@ public class Ticket {
         this.discount = discount;
         Ticket.id = id;
     }
-     //nie wiedziałem, czy poniższe printInfo wystarczy aby zrealizować treść zadania "Wyświetlić pełne dane o bilecie",
-     // więc stworzyłem dodatkowo metodę printFinalInfo
+    //nie wiedziałem, czy poniższe printInfo wystarczy aby zrealizować treść zadania "Wyświetlić pełne dane o bilecie",
+    // więc stworzyłem dodatkowo metodę printFinalInfo
 
     public String printInfo() {
         return "Bilet " + getType() + ": cena podstawowa " + getPrice() + "zł, zniżka " + getDiscount() +
@@ -46,7 +46,7 @@ public class Ticket {
                     finalPrice = (price * finalDiscount(discount) + 5) + (price * finalDiscount(discount)) * 5 / 100;
             default -> finalPrice = Double.parseDouble("Błędny typ biletu");
         }
-        return Math.round(finalPrice * 100.0)/100.0;
+        return Math.round(finalPrice * 100.0) / 100.0;
     }
 
     static Ticket generateNewTicket() {
