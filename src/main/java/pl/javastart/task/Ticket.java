@@ -8,7 +8,7 @@ public class Ticket {
     private String type;
     private double price;
     private double discount;
-    private static int id;
+    private static int id = 1;
 
     static final String ONLINE = "Online";
     static final String STANDARD = "Standard";
@@ -20,8 +20,10 @@ public class Ticket {
         this.type = type;
         this.price = price;
         this.discount = discount;
-        this.id = id;
+        Ticket.id = id;
     }
+     //nie wiedziałem, czy poniższe printInfo wystarczy aby zrealizować treść zadania "Wyświetlić pełne dane o bilecie",
+     // więc stworzyłem dodatkowo metodę printFinalInfo
 
     public String printInfo() {
         return "Bilet " + getType() + ": cena podstawowa " + getPrice() + "zł, zniżka " + getDiscount() +
@@ -40,15 +42,17 @@ public class Ticket {
         switch (type) {
             case ONLINE -> finalPrice = price * finalDiscount(discount);
             case STANDARD -> finalPrice = price * finalDiscount(discount) + 5;
-            case GIFT ->  finalPrice = (price * finalDiscount(discount) + 5) + (price * finalDiscount(discount)) * 5 / 100;
+            case GIFT ->
+                    finalPrice = (price * finalDiscount(discount) + 5) + (price * finalDiscount(discount)) * 5 / 100;
             default -> finalPrice = Double.parseDouble("Błędny typ biletu");
         }
-        return finalPrice;
+        return Math.round(finalPrice * 100.0)/100.0;
     }
 
     static Ticket generateNewTicket() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj typ biletu:");
+
+        System.out.println("Podaj typ biletu (Online, Standard, Gift):");
         String type = scanner.nextLine();
 
         System.out.println("Podaj event:");
@@ -62,11 +66,10 @@ public class Ticket {
         System.out.println("Podaj cenę:");
         double price = scanner.nextDouble();
 
-        System.out.println("Podaj typ zniżkę");
+        System.out.println("Podaj zniżkę");
         double discount = scanner.nextDouble();
 
-        Ticket ticket001 = new Ticket(event, new Address(country, city, street), type, price, discount, Ticket.ticketId());
-        return ticket001;
+        return new Ticket(event, new Address(country, city, street), type, price, discount, Ticket.ticketId());
     }
 
     private double finalDiscount(double discount) {
@@ -75,63 +78,31 @@ public class Ticket {
 
     static int ticketId() {
         return id++;
-
     }
 
     public String getEvent() {
         return event;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public double getDiscount() {
         return discount;
     }
 
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     private String getFinalType() {
-        String finalType = "typ biletu";
+        String finalType;
         switch (type) {
             case ONLINE -> finalType = "bilet internetowy";
             case STANDARD -> finalType = "bilet standardowy";
             case GIFT -> finalType = "bilet prezentowy";
+            default -> finalType = "błędny typ biletu";
         }
         return finalType;
     }

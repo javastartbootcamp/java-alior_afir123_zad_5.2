@@ -1,7 +1,5 @@
 package pl.javastart.task;
 
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -9,8 +7,8 @@ public class Main {
         Address wembley = new Address("Anglia", "Londyn", "11th Floor York House");
 
         Ticket ticket1 = new Ticket("Koncert Muzyki Filmowej", ergo, Ticket.ONLINE, 100, 5, Ticket.ticketId());
-        Ticket ticket2 = new Ticket("Koncert Ed Sheeran", wembley, Ticket.STANDARD, 100, 5, 00002);
-        Ticket ticket3 = new Ticket("Cirque de Solei", ergo, Ticket.GIFT, 100, 5, 00001);
+        Ticket ticket2 = new Ticket("Koncert Ed Sheeran", wembley, Ticket.STANDARD, 100, 5, Ticket.ticketId());
+        Ticket ticket3 = new Ticket("Cirque de Solei", ergo, Ticket.GIFT, 100, 5, Ticket.ticketId());
 
         //test:
         String bilet1 = ticket1.printInfo();
@@ -20,20 +18,20 @@ public class Main {
         System.out.println(bilet1);
         System.out.println(bilet2);
         System.out.println(bilet3);
+        System.out.println();
 
         //Prezentacja pełnych informacji o bilecie:
-        String bilet1a = ticket1.printFinalInfo();
-        String bilet2a = ticket2.printFinalInfo();
-        String bilet3a = ticket3.printFinalInfo();
+        String bilet4 = ticket1.printFinalInfo();
+        String bilet5 = ticket2.printFinalInfo();
+        String bilet6 = ticket3.printFinalInfo();
 
-        System.out.println(bilet1a);
-        System.out.println(bilet2a);
-        System.out.println(bilet3a);
+        System.out.println(bilet4);
+        System.out.println(bilet5);
+        System.out.println(bilet6);
+        System.out.println();
 
-        Ticket ticket001 = Ticket.generateNewTicket();
+        Ticket ticketFromInput = Ticket.generateNewTicket();
 
-        String bilet001 = ticket001.printFinalInfo();
-        System.out.println(bilet001);
-
+        System.out.println(ticketFromInput.printFinalInfo());
     }
 }
